@@ -60,13 +60,17 @@ async function handleNewMessage(message: Message) {
     });
   }, 3000);
 }
+
 </script>
 <template>
-  <ChatBox
-    :me="me"
-    :users="users"
-    :messages="messages"
-    @new-message="handleNewMessage"
-    :usersTyping="usersTyping"
-  />
+  
+    <ChatBox
+      class="bg-gray-400"
+      :me="me"
+      :users="users"
+      :messages="messages"
+      @new-message="handleNewMessage"
+      :usersTyping="usersTyping"
+    />
+    
 </template>
