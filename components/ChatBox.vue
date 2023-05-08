@@ -1,6 +1,7 @@
 <script setup lang="ts">
 import { nanoid } from "nanoid";
 import { Message, User } from "~~/types";
+
 const props = withDefaults(
   defineProps<{
     messages: Message[];
@@ -35,10 +36,10 @@ watch(open, () => {
 // keep messages anchored to bottom
 const messageBox = ref();
 watch(
-  () => props.messages,
+  () => props.messages.length,
   () => {
     nextTick(
-      () => (messageBox.value.scrollTop = messageBox.value.scrollHeight)
+      () => (messageBox.value.scrollTop = messageBox.value?.scrollHeight)
     );
   },
   { deep: true }

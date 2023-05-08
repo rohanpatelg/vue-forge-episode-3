@@ -2,6 +2,7 @@
 import { nanoid } from "nanoid";
 import { Message, User } from "~~/types";
 
+
 const me = ref<User>({
   id: "user",
   avatar: "/avatar.jpg",
@@ -50,15 +51,21 @@ const usersTyping = ref<User[]>([]);
 async function handleNewMessage(message: Message) {
   messages.value.push(message);
   usersTyping.value.push(bot.value);
-  setTimeout(() => {
-    usersTyping.value = [];
-    messages.value.push({
+  const res:string = await $fetch('/api/ai',{
+    method: 'post',
+    body:{ 
+      messages:message.text
+    }
+  });
+  console.log(res)
+  
+  messages.value.push({
       id: nanoid(),
       createdAt: new Date(),
-      text: "Placeholder response until we implement the bot",
+      text: res,
       userId: "assistant",
     });
-  }, 3000);
+    usersTyping.value = [];
 }
 </script>
 <template>

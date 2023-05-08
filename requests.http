@@ -20,3 +20,8 @@ Authorization: Bearer {{$dotenv NUXT_OPENAI_API_KEY}}
   "n": 1,
   "size": "1024x1024"
 }
+
+POST http://localhost:3000/api/ai
+{
+  "message" : "Hi",
+}
